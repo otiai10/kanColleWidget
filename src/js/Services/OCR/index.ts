@@ -1,8 +1,16 @@
+import Tesseract, {createWorker} from "tesseract.js";
 
 export default class OCRService {
   constructor(
     private url: string = "https://api-kcwidget.herokuapp.com/ocr/base64"
-  ) {}
+  ) {
+    this.worker = createWorker({
+      errorHandler: console.error,
+      workerBlobURL: false,
+      workerPath: chrome.runtime.getURL("dest/js/tsworker.js"),
+    });
+  }
+  private readonly worker: Tesseract.Worker
 
   /**
    * Base64形式のimageを受けて、OCRのうえ、ミリ秒に変換して返す
@@ -16,12 +24,10 @@ export default class OCRService {
   }
 
   async base64toText(base64: string): Promise<string> {
-    const res = await fetch(this.url, {
-      body: JSON.stringify({ base64, whitelist: "0123456789:" }),
-      method: "POST",
-    });
-    const { result: text } = await res.json();
-    return text;
+    console.log(["tes"])
+    const res = await this.worker.recognize(base64);
+    console.log(["res", res])
+    return res.data.text.trim();
   }
 
   textToMillisecond(text: string): number {

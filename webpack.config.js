@@ -57,6 +57,7 @@ module.exports = [
       dmm:        "./src/js/entrypoints/dmm.ts",
       kcs2:       "./src/js/entrypoints/kcs2.ts",
       dsnapshot:  "./src/js/entrypoints/dsnapshot.tsx",
+      tsworker:   "./node_modules/tesseract.js/dist/worker.min.js",
     },
     output: {
       path: path.resolve(__dirname, "./dest/js"),
