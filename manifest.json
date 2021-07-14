@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "艦これウィジェット",
-  "version": "3.2.54",
-  "version_name": "3.2.54",
+  "version": "3.2.55",
+  "version_name": "3.2.55",
   "description": "「艦これ」をほどよく快適にたのしく遊べるようにするやつです",
   "permissions": [
     "tabs",
